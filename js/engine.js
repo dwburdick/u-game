@@ -187,7 +187,7 @@ var Engine = (function(global) {
                 ctx.font = "24px Arial";
                 ctx.fillText("Use LEFT and RIGHT keys to scroll", 252, 355);
                 ctx.fillText("Press ENTER to begin", 252, 385);
-}
+            }
             choose = function(select) {
                 if (select == 'left') {
                     if (this.playerIndex <= 0) {

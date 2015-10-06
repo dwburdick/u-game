@@ -164,8 +164,12 @@ var Engine = (function(global) {
         playerSelect = function(playerIndex) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(Resources.get(playerOptions[playerIndex]), 202, 395);
+            ctx.font = "30px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("PLAYER SELECT", 252, 325);
             ctx.font = "24px Arial";
-            ctx.fillText = ("PLAYER SELECT", 202, 345);
+            ctx.fillText("Use LEFT and RIGHT keys to scroll", 252, 355);
+            ctx.fillText("Press ENTER to begin", 252, 385);
             document.addEventListener('keyup', function(e) {
             var allowedKeys = {
                 37: 'left',
@@ -177,9 +181,13 @@ var Engine = (function(global) {
             draw = function(playerIndex) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(Resources.get(playerOptions[playerIndex]), 202, 395);
+                ctx.font = "30px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText("PLAYER SELECT", 252, 325);
                 ctx.font = "24px Arial";
-                ctx.fillText = ("PLAYER SELECT", 202, 345);
-            }
+                ctx.fillText("Use LEFT and RIGHT keys to scroll", 252, 355);
+                ctx.fillText("Press ENTER to begin", 252, 385);
+}
             choose = function(select) {
                 if (select == 'left') {
                     if (this.playerIndex <= 0) {

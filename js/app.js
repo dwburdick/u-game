@@ -57,7 +57,7 @@ Player.prototype.handleInput = function(go) {
             return false;
         };
     } else if (go == 'right') {
-        if ((this.x + 50) <= 455) {
+        if ((this.x + 50) <= 425) {
             this.x = this.x + 50;
         } else {
             return false;

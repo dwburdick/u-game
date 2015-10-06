@@ -26,7 +26,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 707;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -66,7 +66,6 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
-        main();
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -80,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -112,10 +111,11 @@ var Engine = (function(global) {
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 3 of 3 of stone
+                'images/stone-block.png',   // Row 3 of 3 of stone
                 'images/grass-block.png',   // Row 1 of 2 of grass
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
-            numRows = 6,
+            numRows = 7,
             numCols = 5,
             row, col;
 
@@ -160,8 +160,56 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
-    }
+
+        playerSelect = function(playerIndex) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(Resources.get(playerOptions[playerIndex]), 202, 395);
+            ctx.font = "24px Arial";
+            ctx.fillText = ("PLAYER SELECT", 202, 345);
+            document.addEventListener('keyup', function(e) {
+            var allowedKeys = {
+                37: 'left',
+                39: 'right',
+                13: 'enter'
+            };
+            choose(allowedKeys[e.keyCode]);
+        });
+            draw = function(playerIndex) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(Resources.get(playerOptions[playerIndex]), 202, 395);
+                ctx.font = "24px Arial";
+                ctx.fillText = ("PLAYER SELECT", 202, 345);
+            }
+            choose = function(select) {
+                if (select == 'left') {
+                    if (this.playerIndex <= 0) {
+                        this.playerIndex = 4;
+                        draw(this.playerIndex);
+                    } else {
+                        this.playerIndex = this.playerIndex - 1;
+                        draw(this.playerIndex);
+                    };
+                } else if (select == 'right') {
+                    if (this.playerIndex >= 4) {
+                        this.playerIndex = 0;
+                        draw(this.playerIndex);
+                    } else {
+                        this.playerIndex = this.playerIndex + 1;
+                        draw(this.playerIndex);
+                    };
+                } else if (select == 'enter') {
+                    playerSprite = playerOptions[this.playerIndex];
+                    main();
+                    controlsOn();
+                } else {
+                    return false;
+                }
+            };
+
+        };
+
+        playerSelect(playerIndex);
+}
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
@@ -172,7 +220,11 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-cat-girl.png',
+        'images/char-boy.png',
+        'images/char-princess-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-horn-girl.png'
     ]);
     Resources.onReady(init);
 

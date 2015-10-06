@@ -20,7 +20,7 @@ Enemy.prototype.update = function(dt) {
     this.x = (this.x + this.speed);
     if (this.x > 505) {
         this.x = -101;
-    };
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -43,7 +43,7 @@ Player.prototype.render = function() {
 Player.prototype.update = function(dt) {
     if (this.y <= 10) {
         restartGame();
-    };
+    }
 };
 Player.prototype.handleInput = function(go) {
     if (go == 'left') {
@@ -51,13 +51,13 @@ Player.prototype.handleInput = function(go) {
             this.x = this.x - 50;
         } else {
             return false;
-        };
+        }
     } else if (go == 'right') {
         if ((this.x + 50) <= 425) {
             this.x = this.x + 50;
         } else {
             return false;
-        };
+        }
     } else if (go == 'up') {
         this.y = this.y - 50;
     } else if (go == 'down') {
@@ -65,7 +65,7 @@ Player.prototype.handleInput = function(go) {
             this.y = this.y + 50;
         } else {
             return false;
-        };
+        }
     } else {
         return false;
     }
@@ -100,20 +100,20 @@ function controlsOn() {
 
         player.handleInput(allowedKeys[e.keyCode]);
     });
-};
+}
 
 
 function checkCollisions()  {
-    for (i in allEnemies) {
+    for (var i in allEnemies) {
         if (Math.abs((allEnemies[i].x + 28) - player.x) <= 50 && Math.abs(allEnemies[i].y - player.y) <= 50) {
             restartGame();
-         };
-    };
-};
+         }
+    }
+}
 
 function restartGame() {
     document.location.href = "";
-};
+}
 
 var playerSprite = 'images/char-cat-girl.png';
 var p0 = "images/char-cat-girl.png";

@@ -1,7 +1,7 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-To play this simple HTML5 game, download all files into on directory and open index.html.
+To play this simple HTML5 game, download all files into one directory and open index.html.
 
 You will be given the option to select one of five different character sprites.
 
